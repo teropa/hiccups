@@ -1,28 +1,33 @@
 (ns hiccups.runtime
-  (:require [clojure.string :as cstring]
-            [goog.string.StringBuffer :as StringBuffer]))
+  (:require [clojure.string :as cstring]))
 
-(defn as-str
-  ([] "")
-  ([x] (if (or (keyword? x) (symbol? x))
-         (name x)
-         (str x)))
-  ([x & ys]
-    ((fn [sb more]
-       (if more
-         (recur (. sb (append (as-str (first more)))) (next more))
-         (str sb)))
-      (goog.string.StringBuffer. (as-str x)) ys)))
+
+(def ^{:doc "Regular expression that parses a CSS-style id and class from a tag name." :private true}
+  re-tag #"([^\s\.#]+)(?:#([^s\.#]+))?(?:\.([^\s#]+))?")
+
+(def ^{:doc "Characters to replace when escaping HTML" :private true}
+  character-escapes {\& "&amp;", \< "&lt;", \> "&gt;", \" "&quot;"})
+
+(def ^{:doc "A list of tags that need an explicit ending tag when rendered."}
+  container-tags
+  #{"a" "b" "body" "canvas" "dd" "div" "dl" "dt" "em" "fieldset" "form" "h1" "h2" "h3"
+    "h4" "h5" "h6" "head" "html" "i" "iframe" "label" "li" "ol" "option" "pre"
+    "script" "span" "strong" "style" "table" "textarea" "ul"})
+
+(defn as-str [x]
+  (if (or (keyword? x) (symbol? x))
+    (name x)
+    (str x)))
   
 (defn escape-html
   "Change special characters into HTML character entities."
   [text]
   (-> (as-str text)
-      (cstring/escape {\& "&amp;", \< "&lt;", \> "&gt;", \" "&quot;"})))
+      (cstring/escape character-escapes)))
 
 (def h escape-html) ; alias for escape-html
 
-(defn- end-tag []
+(defn end-tag []
   ">")
 
 (defn- xml-attribute [name value]
@@ -37,20 +42,11 @@
     :else
       (xml-attribute name value)))
 
-(defn- render-attr-map [attrs]
+(defn render-attr-map [attrs]
   (apply str
     (sort (map render-attribute attrs))))
 
-(def ^{:doc "Regular expression that parses a CSS-style id and class from a tag name." :private true}
-  re-tag #"([^\s\.#]+)(?:#([^s\.#]+))?(?:\.([^\s#]+))?")
-
-(def ^{:doc "A list of tags that need an explicit ending tag when rendered." :private true}
-  container-tags
-  #{"a" "b" "body" "canvas" "dd" "div" "dl" "dt" "em" "fieldset" "form" "h1" "h2" "h3"
-    "h4" "h5" "h6" "head" "html" "i" "iframe" "label" "li" "ol" "option" "pre"
-    "script" "span" "strong" "style" "table" "textarea" "ul"})
-
-(defn- normalize-element 
+(defn normalize-element 
   "Ensure a tag vector is of the form [tag-name attrs content]."
   [[tag & content]]
   (when (not (or (keyword? tag) (symbol? tag) (string? tag)))
@@ -65,7 +61,7 @@
 
 (declare render-html)
 
-(defn- render-element
+(defn render-element
   "Render a tag vector as a HTML element."
   [element]
   (let [[tag attrs content] (normalize-element element)]

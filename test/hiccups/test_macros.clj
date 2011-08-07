@@ -2,10 +2,8 @@
 
 (defmacro deftest [nm & body]
   (let [testname (symbol (str "test-" (name nm)))]
-    `(do
-       (defn ~testname []
-         ~@body)
-       (set! (. goog.global ~testname) ~testname))))
+    `(set! (. goog.global ~testname)
+           (fn [] ~@body))))
 
 (defmacro is [expr]
   `(window/assertTrue ~expr))
