@@ -9,6 +9,17 @@ and maps to represent a tag's attributes.
 The goal is to provide similar performance to Closure Templates with a much more "Clojure friendly"
 syntax. 
 
+Differences from Hiccup
+-----------------------
+
+* In ClojureScript, macros need to be defined in separate Clojure namespaces. Because of this,
+  core functionality is split into two files: `core.clj` contains the macros and compile-time only
+  functions, and `runtime.cljs` contains functions that are also available at runtime. The contents
+  of `runtime.cljs` are also used at compile-time, so the goal is to keep it portable between
+  ClojureScript and Clojure proper.
+* Unit tests are run in a web browser using Closure's testing libs.
+* Not everything has been ported yet. See ToDo.
+
 Install
 -------
 
