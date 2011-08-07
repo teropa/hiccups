@@ -24,7 +24,7 @@ ClojureScript command line tools
 --------------------------------
 
 While best practices for how to include external ClojureScript libraries don't really exist yet, one 
-options is to drop the [Hiccups jar](http://clojars.org/repo/hiccups/hiccups/0.1/hiccups-0.1.jar)
+option is to drop the [Hiccups jar](http://clojars.org/repo/hiccups/hiccups/0.1/hiccups-0.1.jar)
 in `$CLOJURESCRIPT_HOME/lib`. This will make Hiccups available to the command line compiler script
 as well as the REPL when launched via `script/repl` or `script/repljs`.
     
