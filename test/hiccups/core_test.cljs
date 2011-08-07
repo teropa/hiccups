@@ -98,3 +98,17 @@
     (hiccups/html [:div (foo)])
     (t/is (= 1 @times-called))))
 
+
+(t/deftest defhtml-macro
+  ; basic html function
+  (hiccups/defhtml basic-fn [x] [:span x])
+  (t/is (= (basic-fn "foo") "<span>foo</span>"))
+  ; html function with overloads
+  (hiccups/defhtml overloaded-fn
+    ([x] [:span x])
+    ([x y] [:span x [:div y]]))
+  (t/is (= (overloaded-fn "foo") "<span>foo</span>"))
+  (t/is (= (overloaded-fn "foo" "bar")
+           "<span>foo<div>bar</div></span>")))
+
+

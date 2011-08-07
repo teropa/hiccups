@@ -155,4 +155,14 @@
   [& content]
   (collapse-strs `(cljs.core/str ~@(compile-html content))))
 
+(defmacro defhtml
+  "Define a function, but wrap its output in an implicit html macro."
+  [name & fdecl]
+  (let [[fhead fbody] (split-with #(not (or (list? %) (vector? %))) fdecl)
+        wrap-html (fn [[args & body]] `(~args (html ~@body)))]
+    `(defn ~name
+       ~@fhead
+       ~@(if (vector? (first fbody))
+           (wrap-html fbody)
+           (map wrap-html fbody)))))
 

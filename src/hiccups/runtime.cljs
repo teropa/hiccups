@@ -1,7 +1,6 @@
 (ns hiccups.runtime
   (:require [clojure.string :as cstring]))
 
-
 (def ^{:doc "Regular expression that parses a CSS-style id and class from a tag name." :private true}
   re-tag #"([^\s\.#]+)(?:#([^s\.#]+))?(?:\.([^\s#]+))?")
 
@@ -30,10 +29,10 @@
 (defn end-tag []
   ">")
 
-(defn- xml-attribute [name value]
+(defn xml-attribute [name value]
   (str " " (as-str name) "=\"" (escape-html value) "\""))
 
-(defn- render-attribute [[name value]]
+(defn render-attribute [[name value]]
   (cond
     (true? value)
       (str " " (as-str name))
@@ -71,7 +70,7 @@
            "</" tag ">")
       (str "<" tag (render-attr-map attrs) (end-tag)))))
 
-(defn- render-html
+(defn render-html
   "Turn a Clojure data type into a string of HTML."
   [x]
   (cond

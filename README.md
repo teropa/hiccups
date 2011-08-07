@@ -37,11 +37,10 @@ Require both the core macros and the runtime functions in your namespace declara
       (:require-macros [hiccups.core :as hiccups])
       (:require [hiccups.runtime :as hiccupsrt]))
       
-    (defn ^:export my-template []      
-      (hiccups/html 
-        [:div
-          [:a {:href "https://github.com/weavejester/hiccup"}
-            "Hiccup"]]))
+    (hiccups/defhtml my-template []      
+      [:div
+        [:a {:href "https://github.com/weavejester/hiccup"}
+          "Hiccup"]])
 
 Syntax
 ------
