@@ -18,10 +18,7 @@
   "Change special characters into HTML character entities."
   [text]
   (-> (as-str text)
-      (cstring/replace "&" "&amp;")
-      (cstring/replace "<" "&lt;")
-      (cstring/replace ">" "&gt;")
-      (cstring/replace "\"" "&quot;")))
+      (cstring/escape {\& "&amp;", \< "&lt;", \> "&gt;", \" "&quot;"})))
 
 (def h escape-html) ; alias for escape-html
 
