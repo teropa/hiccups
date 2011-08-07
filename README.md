@@ -16,15 +16,17 @@ Hiccups needs to be in the classpath when the ClojureScript compiler is run. If 
 in a Leiningen project, you can just add a dependency to `[hiccups "0.1.0"]`. Otherwise, there are
 at least two options:
 
-1. Download the Hiccups jar and drop it in your classpath.
+1. Download the [Hiccups jar](http://clojars.org/repo/hiccups/hiccups/0.1/hiccups-0.1.jar)
+   and drop it in your classpath.
 2. Clone the Git repository and add `src/clj` and `src/cljs` to your classpath.
 
 ClojureScript command line tools
 --------------------------------
 
 While best practices for how to include external ClojureScript libraries don't really exist yet, one 
-options is to drop the Hiccups jar in `$CLOJURESCRIPT_HOME/lib`. This will make Hiccups available
-to the command line compiler script as well as the REPL when launched via `script/repl` or `script/repljs`.
+options is to drop the [Hiccups jar](http://clojars.org/repo/hiccups/hiccups/0.1/hiccups-0.1.jar)
+in `$CLOJURESCRIPT_HOME/lib`. This will make Hiccups available to the command line compiler script
+as well as the REPL when launched via `script/repl` or `script/repljs`.
     
 Usage
 -----
