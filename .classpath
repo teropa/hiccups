@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/clj"/>
+	<classpathentry kind="src" path="src/cljs"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="classes"/>
+	<classpathentry kind="lib" path="lib/clojure-1.3.0-beta1.jar"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>
