@@ -18,6 +18,15 @@
     (name x)
     (str x)))
   
+(def ^:dynamic *html-mode* :xml)
+
+(defn- xml-mode? []
+  (= *html-mode* :xml))
+
+(defn in-mode [mode f]
+  (binding [*html-mode* mode]
+    (f)))
+
 (defn escape-html
   "Change special characters into HTML character entities."
   [text]
@@ -27,7 +36,7 @@
 (def h escape-html) ; alias for escape-html
 
 (defn end-tag []
-  ">")
+  (if (xml-mode?) " />" ">"))
 
 (defn xml-attribute [name value]
   (str " " (as-str name) "=\"" (escape-html value) "\""))
@@ -35,7 +44,9 @@
 (defn render-attribute [[name value]]
   (cond
     (true? value)
-      (str " " (as-str name))
+      (if (xml-mode?)
+          (xml-attribute name name)
+          (str " " (as-str name)))
     (not value)
       ""
     :else

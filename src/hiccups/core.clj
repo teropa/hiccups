@@ -152,8 +152,14 @@
 
 (defmacro html
   "Render Clojure data structures to a string of HTML."
-  [& content]
-  (collapse-strs `(cljs.core/str ~@(compile-html content))))
+  [options & content]
+  (letfn [(make-html [content]
+            (collapse-strs `(cljs.core/str ~@(compile-html content))))]
+    (if-let [mode (and (map? options) (:mode options))]
+      (binding [rt/*html-mode* mode]
+        `(hiccups.runtime/in-mode ~mode
+           (fn [] ~(make-html content))))
+      (make-html (cons options content)))))
 
 (defmacro defhtml
   "Define a function, but wrap its output in an implicit html macro."
