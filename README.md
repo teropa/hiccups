@@ -90,4 +90,5 @@ ToDo
 * Figure out how to share code between core macros and runtime
 * Figure out if the runtime can be pulled in without an explicit require by the user
 * Explore potential performance improvements using Google's StringBuffer et al.
+* Run tests in Rhino instead of a browser?
 
