@@ -2,7 +2,7 @@
   (:require [clojure.string :as cstring]))
 
 (def ^{:doc "Regular expression that parses a CSS-style id and class from a tag name." :private true}
-  re-tag #"([^\s\.#]+)(?:#([^s\.#]+))?(?:\.([^\s#]+))?")
+  re-tag #"([^\s\.#]+)(?:#([^\s\.#]+))?(?:\.([^\s#]+))?")
 
 (def ^{:doc "Characters to replace when escaping HTML" :private true}
   character-escapes {\& "&amp;", \< "&lt;", \> "&gt;", \" "&quot;"})
@@ -17,7 +17,7 @@
   (if (or (keyword? x) (symbol? x))
     (name x)
     (str x)))
-  
+
 (def ^:dynamic *html-mode* :xml)
 
 (defn- xml-mode? []
@@ -56,7 +56,7 @@
   (apply str
     (sort (map render-attribute attrs))))
 
-(defn normalize-element 
+(defn normalize-element
   "Ensure a tag vector is of the form [tag-name attrs content]."
   [[tag & content]]
   (when (not (or (keyword? tag) (symbol? tag) (string? tag)))
