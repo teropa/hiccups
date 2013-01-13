@@ -16,6 +16,8 @@
   (t/is (= (hiccups/html ["div"]) "<div></div>"))
   (t/is (= (hiccups/html ['div]) "<div></div>"))
   (t/is (= (hiccups/html [:div#foo]) "<div id=\"foo\"></div>"))
+  (t/is (= (hiccups/html [:form#sign-in]) "<form id=\"sign-in\"></form>"))
+  (t/is (= (hiccups/html [:input#sign-in-email]) "<input id=\"sign-in-email\" />"))
   (t/is (= (hiccups/html [:div.foo]) "<div class=\"foo\"></div>"))
   (t/is (= (hiccups/html [:div.foo (str "bar" "baz")])
            "<div class=\"foo\">barbaz</div>"))
