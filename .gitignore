@@ -1,6 +1,8 @@
 *.jar
+resources/private/js/*
 classes/
 out/
 target/
 pom.xml
-.lein-failures
+.lein*
+
