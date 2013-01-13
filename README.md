@@ -1,12 +1,10 @@
 Hiccups
 =======
 
-Hiccups is a ClojureScript port of [Hiccup](https://github.com/weavejester/hiccup) -
-an alternative to [Closure Templates](http://code.google.com/closure/templates/)
-for representing HTML in ClojureScript. It uses vectors to represent tags,
-and maps to represent a tag's attributes.
+Hiccups is a ClojureScript port of the [Hiccup](https://github.com/weavejester/hiccup) HTML generation library.
+It uses vectors to represent tags, and maps to represent a tag's attributes.
 
-The goal is to provide similar performance to Closure Templates with a much more "Clojure friendly"
+The goal is to provide similar performance to Closure Templates with a much more Clojure friendly
 syntax. 
 
 Differences from Hiccup
@@ -16,28 +14,28 @@ Differences from Hiccup
   core functionality is split into two files: `core.clj` contains the macros and compile-time only
   functions, and `runtime.cljs` contains functions that are also available at runtime. The contents
   of `runtime.cljs` are also used at compile-time, so the goal is to keep it portable between
-  ClojureScript and Clojure proper.
-* Unit tests are run in a web browser using Closure's testing libs.
+  ClojureScript and Clojure.
+* Unit tests are run in a PhantomJS browser using [lein-cljsbuild](https://github.com/emezeske/lein-cljsbuild/) and Closure's testing libs.
 * Not everything has been ported yet. See ToDo.
+
+Alternatives
+------------
+
+* [Crate](https://github.com/ibdknox/crate) is an alternative Hiccup style library for ClojureScript. The main difference
+  between Crate and Hiccups is that Crate generates DOM nodes and Hiccups generates strings. There are a few reasons why you might consider Hiccups over Crate (YMMV, of course):
+  * As with the original Hiccup, Hiccups tries to do as much as possible at compile time, with macro expansion.
+  * Working with strings can be much more
+  performant than working with DOM nodes, especially with large amounts of markup, and
+  [especially with older browsers](http://www.quirksmode.org/dom/innerhtml.html).
+  * Easier to use in headless environments like Node.js
+* [Closure Templates](http://code.google.com/closure/templates/) is Google's Closure templating library.
 
 Install
 -------
 
-Hiccups needs to be in the classpath when the ClojureScript compiler is run. If you're developing
-in a Leiningen project, you can just add a dependency to `[hiccups "0.1.1"]`. Otherwise, there are
-at least two options:
+Add the following dependency to your `project.clj` file:
 
-1. Download the [Hiccups jar](http://clojars.org/repo/hiccups/hiccups/0.1.1/hiccups-0.1.1.jar)
-   and drop it in your classpath.
-2. Clone the Git repository and add `src/clj` and `src/cljs` to your classpath.
-
-ClojureScript command line tools
---------------------------------
-
-While best practices for how to include external ClojureScript libraries don't really exist yet, one 
-option is to drop the [Hiccups jar](http://clojars.org/repo/hiccups/hiccups/0.1.1/hiccups-0.1.1.jar)
-in `$CLOJURESCRIPT_HOME/lib`. This will make Hiccups available to the command line compiler script
-as well as the REPL when launched via `script/repl` or `script/repljs`.
+    [hiccups "0.2.0"]
     
 Usage
 -----
@@ -94,9 +92,9 @@ See the [Hiccup wiki](https://github.com/weavejester/hiccup/wiki) for more infor
 ToDo
 ----
 
+* Catch up with recent changes in Hiccup.
 * Form helpers
 * Page helpers
 * Figure out if the runtime can be pulled in without an explicit require by the user
 * Explore potential performance improvements using Google's StringBuffer et al.
-* Run tests in Rhino instead of a browser?
 

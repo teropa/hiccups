@@ -1,4 +1,4 @@
-(defproject hiccups "0.2.0-SNAPSHOT"
+(defproject hiccups "0.2.0"
   :description "A ClojureScript port of Hiccup - a fast library for rendering HTML in ClojureScript"
   :url "http://github.com/teropa/hiccups"
   :dependencies [[org.clojure/clojure "1.4.0"]]
