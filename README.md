@@ -28,6 +28,8 @@ Alternatives
   performant than working with DOM nodes, especially with large amounts of markup, and
   [especially with older browsers](http://www.quirksmode.org/dom/innerhtml.html).
   * Easier to use in headless environments like Node.js
+* [Dommy](https://github.com/Prismatic/dommy) is another Hiccup style ClojureScript templating library which
+  generates DOM elements.
 * [Closure Templates](http://code.google.com/closure/templates/) is Google's Closure templating library.
 
 Install
