@@ -37,7 +37,7 @@ Install
 
 Add the following dependency to your `project.clj` file:
 
-    [hiccups "0.2.0"]
+    [hiccups "0.3.0"]
     
 Usage
 -----

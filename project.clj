@@ -1,4 +1,4 @@
-(defproject hiccups "0.3.0"
+(defproject hiccups "0.4.0-SNAPSHOT"
   :description "A ClojureScript port of Hiccup - a fast library for rendering HTML in ClojureScript"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License - v 1.0"
