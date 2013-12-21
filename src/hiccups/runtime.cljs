@@ -63,7 +63,7 @@
     (throw (str tag " is not a valid tag name")))
   (let [[_ tag id class] (re-matches re-tag (as-str tag))
         tag-attrs        {:id id
-                          :class (if class (.replace ^String class "." " "))}
+                          :class (if class (cstring/replace class "." " "))}
         map-attrs        (first content)]
     (if (map? map-attrs)
       [tag (merge tag-attrs map-attrs) (next content)]
