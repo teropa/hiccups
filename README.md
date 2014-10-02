@@ -5,7 +5,7 @@ Hiccups is a ClojureScript port of the [Hiccup](https://github.com/weavejester/h
 It uses vectors to represent tags, and maps to represent a tag's attributes.
 
 The goal is to provide similar performance to Closure Templates with a much more Clojure friendly
-syntax. 
+syntax.
 
 Differences from Hiccup
 -----------------------
@@ -37,29 +37,35 @@ Install
 
 Add the following dependency to your `project.clj` file:
 
-    [hiccups "0.3.0"]
-    
+```clojure
+[hiccups "0.3.0"]
+```
+
 Usage
 -----
 
 Require both the core macros and the runtime functions in your namespace declaration:
 
-    (ns myns
-      (:require-macros [hiccups.core :as hiccups])
-      (:require [hiccups.runtime :as hiccupsrt]))
-      
-    (hiccups/defhtml my-template []      
-      [:div
-        [:a {:href "https://github.com/weavejester/hiccup"}
-          "Hiccup"]])
+```clojure
+(ns myns
+  (:require-macros [hiccups.core :as hiccups])
+  (:require [hiccups.runtime :as hiccupsrt]))
+
+(hiccups/defhtml my-template []
+  [:div
+    [:a {:href "https://github.com/weavejester/hiccup"}
+      "Hiccup"]])
+```
 
 Syntax
 ------
 
 Here is a basic example of Hiccups syntax:
 
-    (html [:span {:class "foo"} "bar"])
-    "<span class=\"foo\">bar</span>"
+```clojure
+(html [:span {:class "foo"} "bar"])
+"<span class=\"foo\">bar</span>"
+```
 
 The first element of the vector is used as the tag name. The second
 attribute can optionally be a map, in which case it is used to supply
@@ -69,26 +75,32 @@ tag's body.
 Hiccups is intelligent enough to render different HTML tags in different
 ways, in order to accommodate browser quirks:
 
-    (html [:script])
-    "<script></script>"
-    (html [:p])
-    "<p />"
+```clojure
+(html [:script])
+"<script></script>"
+(html [:p])
+"<p />"
+```
 
 And provides a CSS-like shortcut for denoting `id` and `class`
 attributes:
 
-    (html [:div#foo.bar.baz "bang"])
-    "<div id=\"foo\" class=\"bar baz\">bang</div>"
+```clojure
+(html [:div#foo.bar.baz "bang"])
+"<div id=\"foo\" class=\"bar baz\">bang</div>"
+```
 
 If the body of the tag is a seq, its contents will be expanded out into
 the tag body. This makes working with forms like `map` and `for` more
 convenient:
 
-    (html [:ul
-            (for [x (range 1 4)]
-              [:li x])])
-    "<ul><li>1</li><li>2</li><li>3</li></ul>"
-    
+```clojure
+(html [:ul
+        (for [x (range 1 4)]
+          [:li x])])
+"<ul><li>1</li><li>2</li><li>3</li></ul>"
+```
+
 See the [Hiccup wiki](https://github.com/weavejester/hiccup/wiki) for more information.
 
 ToDo
