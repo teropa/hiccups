@@ -46,7 +46,7 @@ Require both the core macros and the runtime functions in your namespace declara
 
 ```clojure
 (ns myns
-  (:require-macros [hiccups.core :as hiccups])
+  (:require-macros [hiccups.core :as hiccups :refer [html]])
   (:require [hiccups.runtime :as hiccupsrt]))
 
 (hiccups/defhtml my-template []
