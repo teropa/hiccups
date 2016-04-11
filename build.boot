@@ -14,7 +14,8 @@
                           [org.clojure/tools.nrepl "0.2.12" :scope "test"]
                           [adzerk/boot-reload "0.4.5" :scope "test"]
                           [pandeiro/boot-http "0.7.0" :scope "test"]
-                          [cljsjs/boot-cljsjs "0.5.1" :scope "test"]])
+                          [cljsjs/boot-cljsjs "0.5.1" :scope "test"]
+                          [provisdom/boot-tasks "0.5.1" :scope "test"]])
 
 (task-options!
   pom {:project     project
@@ -30,7 +31,8 @@
   '[adzerk.boot-cljs-repl :refer [cljs-repl start-repl]]
   '[adzerk.boot-reload :refer :all]
   '[pandeiro.boot-http :refer :all]
-  '[cljsjs.boot-cljsjs :refer :all])
+  '[cljsjs.boot-cljsjs :refer :all]
+  '[provisdom.boot-tasks.core :refer :all])
 
 (deftask web-dev
          "Developer workflow for web-component UX."
