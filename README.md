@@ -99,6 +99,8 @@ convenient:
 "<ul><li>1</li><li>2</li><li>3</li></ul>"
 ```
 
+Note that while lists are considered to be seqs in Clojure(Script), vectors and sets are not. As a consequence, Hiccups will bail out if a vector is passed in without a tag: `[[:div] [:div]]`.
+
 See the [Hiccup wiki](https://github.com/weavejester/hiccup/wiki) for more information.
 
 ToDo
