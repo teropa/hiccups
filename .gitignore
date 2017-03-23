@@ -6,3 +6,15 @@ target/
 pom.xml
 .lein*
 .repl
+/classes
+/checkouts
+pom.xml.asc
+*.class
+/.lein-*
+/.nrepl-port
+.hgignore
+.hg/
+/.idea
+*.iml
+.envrc
+/out
