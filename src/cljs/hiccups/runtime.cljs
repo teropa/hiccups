@@ -50,11 +50,11 @@
     (true? value)
       (if (xml-mode?)
           (xml-attribute name name)
-          (str " " (as-str name)))
+          (str " " (escape-html name)))
     (not value)
       ""
     :else
-      (xml-attribute name (if (map? value) (render-attr-map value) value) false)))
+      (xml-attribute name (if (map? value) (render-attr-map value) (escape-html value)) false)))
 
 (defn render-attr-map [attrs]
   (apply str
