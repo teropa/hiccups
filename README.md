@@ -36,9 +36,7 @@ Install
 
 Add the following dependency to your `project.clj` file:
 
-```clojure
-[macchiato/hiccups "0.4.0"]
-```
+[![Clojars Project](https://img.shields.io/clojars/v/macchiato/hiccups.svg)](https://clojars.org/macchiato/hiccups)
 
 Usage
 -----
