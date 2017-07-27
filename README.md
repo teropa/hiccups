@@ -15,6 +15,7 @@ Differences from Hiccup
   functions, and `runtime.cljs` contains functions that are also available at runtime. The contents
   of `runtime.cljs` are also used at compile-time, so the goal is to keep it portable between
   ClojureScript and Clojure.
+* HTML is escaped by default, use `:dangerously-set-inner-HTML` to explicitly disable escaping.
 * Unit tests are run in a PhantomJS browser using [lein-cljsbuild](https://github.com/emezeske/lein-cljsbuild/) and Closure's testing libs.
 * Not everything has been ported yet. See ToDo.
 
@@ -36,7 +37,7 @@ Install
 Add the following dependency to your `project.clj` file:
 
 ```clojure
-[hiccups "0.3.0"]
+[macchiato/hiccups "0.4.0"]
 ```
 
 Usage
@@ -97,6 +98,14 @@ convenient:
         (for [x (range 1 4)]
           [:li x])])
 "<ul><li>1</li><li>2</li><li>3</li></ul>"
+```
+
+Disabling HTML escaping is accomplished by using React inspired `:dangerously-set-inner-HTML` attribute:
+
+```clojure
+[:div
+ {:dangerously-set-inner-HTML
+  {:__html "<p>safe html</p>"}}]
 ```
 
 See the [Hiccup wiki](https://github.com/weavejester/hiccup/wiki) for more information.
