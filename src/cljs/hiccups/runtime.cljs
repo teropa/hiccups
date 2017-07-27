@@ -38,8 +38,12 @@
 (defn end-tag []
   (if (xml-mode?) " />" ">"))
 
-(defn xml-attribute [name value]
-  (str " " (as-str name) "=\"" (escape-html value) "\""))
+(defn xml-attribute
+  ([name value] (xml-attribute name value true))
+  ([name value escape?]
+   (str " " (as-str name) "=\"" (if escape? (escape-html value) value) "\"")))
+
+(declare render-attr-map)
 
 (defn render-attribute [[name value]]
   (cond
@@ -50,7 +54,7 @@
     (not value)
       ""
     :else
-      (xml-attribute name value)))
+      (xml-attribute name (if (map? value) (render-attr-map value) value) false)))
 
 (defn render-attr-map [attrs]
   (apply str

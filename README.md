@@ -97,6 +97,7 @@ convenient:
           [:li x])])
 "<ul><li>1</li><li>2</li><li>3</li></ul>"
 ```
+Note that while lists are considered to be seqs in Clojure(Script), vectors and sets are not. As a consequence, Hiccups will bail out if a vector is passed in without a tag: `[[:div] [:div]]`.
 
 Disabling HTML escaping is accomplished by using React inspired `:dangerously-set-inner-HTML` attribute:
 
@@ -105,6 +106,7 @@ Disabling HTML escaping is accomplished by using React inspired `:dangerously-se
  {:dangerously-set-inner-HTML
   {:__html "<p>safe html</p>"}}]
 ```
+=======
 
 See the [Hiccup wiki](https://github.com/weavejester/hiccup/wiki) for more information.
 
