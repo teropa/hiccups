@@ -1,6 +1,6 @@
 {
   "name": "hiccups",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "A library for rendering HTML in ClojureScript ",
   "author": "Dmitri Sotnokov",
   "homepage": "https://github.com/macchiato-framework/hiccups",
