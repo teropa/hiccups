@@ -38,6 +38,10 @@ Add the following dependency to your `project.clj` file:
 
 [![Clojars Project](https://img.shields.io/clojars/v/macchiato/hiccups.svg)](https://clojars.org/macchiato/hiccups)
 
+alternatively via NPM
+
+[![NPM](https://nodei.co/npm/hiccups.png?mini=true)](https://www.npmjs.com/package/hiccups)
+
 Usage
 -----
 
