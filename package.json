@@ -1,0 +1,20 @@
+{
+  "name": "hiccups",
+  "version": "0.4.3",
+  "description": "A library for rendering HTML in ClojureScript ",
+  "author": "Dmitri Sotnokov",
+  "homepage": "https://github.com/macchiato-framework/hiccups",
+  "license": "EPL-1.0",
+  "directories": {
+    "lib": "src"
+  },
+  "files": [
+    "src/*"
+  ],
+  "keywords": [
+    "cljs",
+    "cljc",
+    "html",
+    "templating"
+  ]
+}

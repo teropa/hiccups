@@ -50,11 +50,11 @@
     (true? value)
       (if (xml-mode?)
           (xml-attribute name name)
-          (str " " (as-str name)))
+          (str " " (escape-html name)))
     (not value)
       ""
     :else
-      (xml-attribute name (if (map? value) (render-attr-map value) value) false)))
+      (xml-attribute name (if (map? value) (render-attr-map value) (escape-html value)) false)))
 
 (defn render-attr-map [attrs]
   (apply str
@@ -79,10 +79,16 @@
   "Render a tag vector as a HTML element."
   [element]
   (let [[tag attrs content] (normalize-element element)]
-    (if (or content (container-tags tag))
+    (cond
+      (:dangerouslySetInnerHTML attrs)
+      (-> attrs :dangerouslySetInnerHTML :__html)
+      (:dangerously-set-inner-HTML attrs)
+      (-> attrs :dangerously-set-inner-HTML :__html)
+      (or content (container-tags tag))
       (str "<" tag (render-attr-map attrs) ">"
            (render-html content)
            "</" tag ">")
+      :else
       (str "<" tag (render-attr-map attrs) (end-tag)))))
 
 (defn render-html
@@ -91,4 +97,4 @@
   (cond
     (vector? x) (render-element x)
     (seq? x) (apply str (map render-html x))
-    :else (as-str x)))
+    :else (escape-html x)))
